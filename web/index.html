@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Surf Signal</title>
+    <link rel="preconnect" href="https://marine-api.open-meteo.com" />
+    <link rel="preconnect" href="https://api.open-meteo.com" />
+    <link rel="preconnect" href="https://upload.wikimedia.org" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-label="서핑 예보">
+        <div class="hero__media" aria-hidden="true"></div>
+        <div class="hero__shade" aria-hidden="true"></div>
+        <div class="hero__content">
+          <div class="topline">
+            <span id="spotBadge">Legian Beach</span>
+            <span id="clock">현지 시간 불러오는 중</span>
+          </div>
+          <h1 id="heroTitle">Surf Signal</h1>
+          <p id="heroCopy">오늘부터 모레까지, 바람과 파도 주기와 미드 타이드를 합쳐 입수 타이밍을 잡아줍니다.</p>
+          <div class="spot-switch" aria-label="서핑 스팟 선택">
+            <button class="spot-button is-active" type="button" data-spot="legian">발리 레기안</button>
+            <button class="spot-button" type="button" data-spot="songjeong">송정 라스트웨이브</button>
+          </div>
+          <div class="hero__actions">
+            <button id="refreshButton" type="button">데이터 새로고침</button>
+            <a href="#forecast">시간대 보기</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-band" aria-label="현재 추천 요약">
+        <article class="signal-panel">
+          <span class="label">전체 최고 추천</span>
+          <strong id="overallBest">계산 중</strong>
+          <small id="overallDetail">Open-Meteo 데이터를 가져오고 있습니다.</small>
+        </article>
+        <article class="metric-panel">
+          <span class="label">좌표</span>
+          <strong id="coordinateText">-8.711, 115.166</strong>
+          <small id="spotDescription">발리 레기안 해변 라인업 기준</small>
+        </article>
+        <article class="metric-panel">
+          <span class="label">판정 기준</span>
+          <strong id="ruleSummary">바람 + 주기 + 조수</strong>
+          <small>좋음은 세 조건 모두 통과</small>
+        </article>
+      </section>
+
+      <section id="forecast" class="forecast-section" aria-label="3일 시간대별 서핑 예보">
+        <div class="section-head">
+          <div>
+            <span class="label" id="forecastLabel">3일 예보</span>
+            <h2>시간대별 서핑 컨디션</h2>
+          </div>
+          <p id="updatedAt">업데이트 준비 중</p>
+        </div>
+        <div id="loading" class="loading">파도 데이터를 가져오는 중입니다.</div>
+        <div id="error" class="error" hidden></div>
+        <div id="dayTabs" class="day-tabs" aria-label="날짜 선택"></div>
+        <div id="dayPanels" class="day-panels"></div>
+      </section>
+
+      <footer class="footer">
+        <span>데이터: Open-Meteo Marine API, Open-Meteo Forecast API</span>
+        <span>사진: Legian Bali.jpg, Ikeforwiki, CC BY 4.0</span>
+      </footer>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
